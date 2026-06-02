@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nesh1ro</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#050505;color:#fff;overflow:hidden;height:100vh}
+canvas{position:fixed;inset:0}
+.container{position:relative;z-index:2;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.avatar{width:220px;height:220px;border-radius:50%;object-fit:cover;box-shadow:0 0 30px rgba(255,255,255,.2)}
+h1{font-size:56px;margin-top:20px}
+.subtitle{color:#aaa;margin:10px 0 25px}
+.links{display:flex;flex-direction:column;gap:10px;width:280px}
+.btn{color:white;text-decoration:none;padding:14px;text-align:center;border:1px solid #333;border-radius:14px;background:#111}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+<div class="container">
+<img src="avatar.jpg" class="avatar">
+<h1>nesh1ro</h1>
+<div class="subtitle">student • gaming • editing</div>
+<div class="links">
+<a class="btn" href="https://t.me/nesh1ro">Telegram</a>
+<a class="btn" href="https://vk.ru/nesh1ro">VK</a>
+<a class="btn" href="https://www.tiktok.com/@vvnt302">TikTok</a>
+<button class="btn" onclick="toggleMusic()">▶ play snowfall</button>
+</div>
+</div>
+<audio id="audio" loop><source src="snowfall.mp3" type="audio/mpeg"></audio>
+<script>
+const audio=document.getElementById("audio");let p=false;
+function toggleMusic(){if(!p){audio.play();p=true}else{audio.pause();p=false}}
+const c=document.getElementById("snow"),x=c.getContext("2d");
+function r(){c.width=innerWidth;c.height=innerHeight}r();onresize=r;
+let s=[...Array(150)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*3+1,v:Math.random()*2+.5}));
+(function d(){x.clearRect(0,0,c.width,c.height);x.fillStyle="white";
+s.forEach(f=>{x.beginPath();x.arc(f.x,f.y,f.r,0,6.28);x.fill();f.y+=f.v;if(f.y>c.height){f.y=-10;f.x=Math.random()*c.width}});
+requestAnimationFrame(d)})();
+</script>
+</body></html>
